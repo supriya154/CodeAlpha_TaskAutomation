@@ -1,18 +1,18 @@
-import re
+import os
 
-with open("sample.txt", "r") as file:
-    content = file.read()
+folder = "MyFiles"
 
-emails = re.findall(
-    r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}',
-    content
-)
+# Create a folder automatically
+if not os.path.exists(folder):
+    os.mkdir(folder)
+    print("Folder created successfully!")
+else:
+    print("Folder already exists.")
 
-with open("emails.txt", "w") as file:
-    for email in emails:
-        file.write(email + "\n")
+# Create a text file
+file_path = os.path.join(folder, "report.txt")
 
-print("Emails Extracted Successfully!")
+with open(file_path, "w") as file:
+    file.write("This file was created automatically using Python.")
 
-for email in emails:
-    print(email)
+print("Task completed successfully!")
